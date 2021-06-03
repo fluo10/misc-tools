@@ -1,15 +1,16 @@
 use clap::Clap;
 
 #[derive(Clap)]
-#[clap(name = "dotfiles-handler", version = "0.1", author= "fluo10 <fluo10.dev@fireturtle.net>", about = "Helper for handling zola content")]
+#[clap(name = "git-dot", version = "0.1", author= "fluo10 <fluo10.dev@fireturtle.net>")]
 pub struct Opts {
   #[clap(subcommand)]
   pub subcmd: SubCommand,
 }
 #[derive(Clap)]
 pub enum SubCommand{
-  #[clap(version = "0.1", author= "fluo10 <fluo10.dev@fireturtle.net>", about = "Push config files", )]
-  Push(Push),
+  #[clap(version = "0.1", author= "fluo10 <fluo10.dev@fireturtle.net>", about = "Managing shared branches", )]
+  SharedBranch(SharedBranch),
+  /* 
   #[clap(version = "0.1", author= "fluo10 <fluo10.dev@fireturtle.net>", about = "Pull config files", )]
   Pull(Pull),
   #[clap(version = "0.1", author= "fluo10 <fluo10.dev@fireturtle.net>", about = "Add config files", )]
@@ -18,10 +19,11 @@ pub enum SubCommand{
   Remove(Remove),
   #[clap(version = "0.1", author= "fluo10 <fluo10.dev@fireturtle.net>", about = "Show config files", )]
   Show(Show),
+  */
 }
 
 #[derive(Clap)]
-pub struct Push {
+pub struct SharedBranch {
   #[clap(short, long, parse(from_occurrences), about = "Set the level of verbosity",)]
   pub verbose: i32,
 }
