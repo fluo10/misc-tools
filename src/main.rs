@@ -1,3 +1,4 @@
+extern crate git2;
 extern crate clap;
 mod cli;
 use clap::Clap;
@@ -5,8 +6,8 @@ use cli::{Opts, SubCommand, Push, Pull, Show, Add, Remove,};
 
 
 fn main() {
-    let opts: Opts = Opts::parse();
-    match opts.subcmd {
+//    let opts: Opts = Opts::parse();
+//    match opts.subcmd {
         SubCommand::Push(t) => {
             //if t.debug {
             //    println!("Printing debug info...");
