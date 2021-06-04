@@ -2,13 +2,13 @@ extern crate git2;
 extern crate clap;
 mod cli;
 use clap::Clap;
-use cli::{Opts, SubCommand, SharedBranch,};
+use cli::{Opts, SubCommand, Pull, Push, Show, Status,};
 
 
 fn main() {
     let opts: Opts = Opts::parse();
     match opts.subcmd {
-        SubCommand::SharedBranch(t) => {
+        SubCommand::Pull(t) => {
             //if t.debug {
             //    println!("Printing debug info...");
             //} else {
@@ -17,24 +17,18 @@ fn main() {
             //match t.subcmd{
             //    
             //}
+            println!("Pull")
         }
-        /*
-        SubCommand::Pull(t) => {
-            println!("Pull");
-        }
+        
         SubCommand::Push(t) => {
             println!("Push");
-        }
-        SubCommand::Add(t) => {
-            println!("Add");
-        }
-        SubCommand::Remove(t) => {
-            println!("Remove");
         }
         SubCommand::Show(t) => {
             println!("Show");
         }
-        */
+        SubCommand::Status(t) => {
+            println!("Status");
+        }
     }
 //    println!("Using input file: {}", opts.input);
 }
