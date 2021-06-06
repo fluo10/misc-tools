@@ -1,5 +1,6 @@
 use std::env;
-
+use std::fs;
+use std::path::Path;
 //fn readline(&mut src: String, &mut dst: String)-> Result() {
 //    println!("Please input source directory.");
 //    io::stdin()
@@ -20,9 +21,34 @@ fn main() {
     //let &mut dst;
 
     let args: Vec<String> = env::args().collect();
+    assert!(args.len() > 1);
     let src = &args[1];
-    let dst = &args[2];
-    
-    println!("src: {}", src);
-    println!("dst: {}", dst);
+    let src = Path::new(src);
+    assert!(src.exists());
+    let dst = match args.len() {
+        2 => format!("{}{}",args[1], ".svg"),
+        3 => format!("{}",args[2]),
+        _ => panic!("Invalid arguments")
+    };
+
+    let dst = Path::new(&dst);
+    assert!(src.exists());
+    //let contents = fs::read_to_string(filename)
+    println!("src: {}", src.display());
+    println!("dst: {}", dst.display());
+    //get_source_files(src);
+    if src.is_dir() {
+        for entry in  fs::read_dir(src).unwrap() {
+            let entry = entry.unwrap();
+            let path = entry.path();
+            if path.is_file() {
+                println!("{}", path.as_path().display());
+            }
+        }
+    } else{
+        println!("{} is not direcroty", src.display());
+    }
 }
+
+//fn get_source_files(dir: &Path, cb: &dyn FN()) -> io::Result<()> {
+//}
