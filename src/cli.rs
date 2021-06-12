@@ -3,11 +3,19 @@ use clap::Clap;
 #[derive(Clap)]
 #[clap(name = "git-common-branch", version = "0.1", author= "fluo10 <fluo10.dev@fireturtle.net>")]
 pub struct Opts {
+  #[clap(short, long, default_value = ".gitshared")]
+  pub config: String,
+  #[clap(short, long, parse(from_occurrences),)]
+  pub verbose: i32,
   #[clap(subcommand)]
   pub subcmd: SubCommand,
 }
 #[derive(Clap)]
 pub enum SubCommand{
+  #[clap(version = "0.1", author= "fluo10 <fluo10.dev@fireturtle.net>", about = "Show status about common branches", )]
+  Add(Add),
+  #[clap(version = "0.1", author= "fluo10 <fluo10.dev@fireturtle.net>", about = "Show status about common branches", )]
+  Remove(Remove),
   #[clap(version = "0.1", author= "fluo10 <fluo10.dev@fireturtle.net>", about = "Pull common branches", )]
   Pull(Pull),
   #[clap(version = "0.1", author= "fluo10 <fluo10.dev@fireturtle.net>", about = "Pull common branches", )]
@@ -15,9 +23,19 @@ pub enum SubCommand{
   #[clap(version = "0.1", author= "fluo10 <fluo10.dev@fireturtle.net>", about = "Show list about common branches", )]
   Show(Show),
   #[clap(version = "0.1", author= "fluo10 <fluo10.dev@fireturtle.net>", about = "Show status about common branches", )]
-  Status(Status)
+  Status(Status),
 }
 
+#[derive(Clap)]
+pub struct Add {
+  #[clap(short, long, parse(from_occurrences), about = "Set the level of verbosity",)]
+  pub verbose: i32,
+}
+#[derive(Clap)]
+pub struct Remove {
+  #[clap(short, long, parse(from_occurrences), about = "Set the level of verbosity",)]
+  pub verbose: i32,
+}
 #[derive(Clap)]
 pub struct Pull {
   #[clap(short, long, parse(from_occurrences), about = "Set the level of verbosity",)]
