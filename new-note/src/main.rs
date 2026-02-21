@@ -33,7 +33,7 @@ fn get_file_content(id: &CarettaId, timestamp: &NaiveDateTime, tags: &[String]) 
 
 fn main() {
     let args = Args::parse();
-    let timestamp = Utc::now().naive_local();
+    let timestamp = Local::now().naive_local();
     let id= CarettaId::now_unix();
     let mut path = args.dir;
     path.push(get_file_name(&id));
